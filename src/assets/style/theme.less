@@ -1,4 +1,34 @@
 body {
   background-color: var(--color-bg-1);
   color: var(--color-text-1);
+  // transition: all 0.4s;
+}
+
+// 顶部菜单 去除背景颜色
+.arco-menu-light {
+  background-color: transparent !important;
+}
+.arco-menu-light .arco-menu-item,
+.arco-menu-light .arco-menu-group-title,
+.arco-menu-light .arco-menu-pop-header,
+.arco-menu-light .arco-menu-inline-header {
+  background-color: transparent !important;
+}
+
+// content 滚动条样式
+.arco-layout-content::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: 7px; /*高宽分别对应横竖滚动条的尺寸*/
+  height: 4px;
+}
+.arco-layout-content::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  -webkit-box-shadow: inset 0 0 5px #49b1f5;
+  background: #49b1f5;
+  border-radius: 4px;
+}
+.arco-layout-content::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background: #f0f2f5;
 }

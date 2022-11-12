@@ -1,18 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { Outlet } from "react-router-dom";
 import { Layout } from "@arco-design/web-react";
-
 import Header from "./Header";
-import Footer from "./Footer";
-import Content from "./Content";
+import bg from "../assets/img/bg1.jpg";
+import h from "./index.module.less";
 
-export default function index() {
+const Content = Layout.Content;
+
+const index = (props) => {
+  const [getOpacity, setGetOpacity] = useState("0.9");
+
+  const sectionStyle = {
+    backgroundImage: `url(${bg})`,
+    opacity: getOpacity,
+  };
+
+  useEffect(() => {
+    props.theme === "true" ? setGetOpacity("0.9") : setGetOpacity("0.2");
+  }, [props.theme]);
+
   return (
-    <div className="layout-basic-demo">
-      <Layout style={{ height: "400px" }}>
-        <Header>Header</Header>
-        <Content>Content</Content>
-        <Footer>Footer</Footer>
-      </Layout>
-    </div>
+    <Layout style={{ height: "100vh", width: "100vw" }}>
+      <div style={sectionStyle} className={h.img}></div>
+      <Header />
+      <Content className={h.layOutContent}>
+        <Outlet />
+      </Content>
+    </Layout>
   );
-}
+};
+
+export default connect((state) => ({ theme: state.Disposition }), {})(index);

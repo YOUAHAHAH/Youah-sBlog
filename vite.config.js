@@ -33,6 +33,8 @@ export default defineConfig({
         modifyVars: {
           //在这里进行主题的修改，参考官方配置属性
           // "@primary-color": "#1DA57A",
+          // 在less-loader@6 modifyVars 配置被移到 lessOptions 中
+          // "blog-theme-img": ".arco-theme",
         },
       },
     },
