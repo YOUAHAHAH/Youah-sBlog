@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { Outlet } from "react-router-dom";
 import { Layout } from "@arco-design/web-react";
 import Header from "./Header";
-import bg from "../assets/img/bg1.jpg";
+import Footer from "./Footer";
+import bg from "../assets/img/bg.jpg";
 import h from "./index.module.less";
 
 const Content = Layout.Content;
@@ -21,13 +22,16 @@ const index = (props) => {
   }, [props.theme]);
 
   return (
-    <Layout style={{ height: "100vh", width: "100vw" }}>
-      <div style={sectionStyle} className={h.img}></div>
-      <Header />
-      <Content className={h.layOutContent}>
-        <Outlet />
-      </Content>
-    </Layout>
+    <>
+      <Layout style={{ height: "100vh", width: "100vw" }}>
+        <div style={sectionStyle} className={h.img}></div>
+        <Header />
+        <Content className={h.layOutContent}>
+          <Outlet />
+          <Footer />
+        </Content>
+      </Layout>
+    </>
   );
 };
 

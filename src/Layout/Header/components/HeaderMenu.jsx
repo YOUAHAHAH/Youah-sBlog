@@ -18,7 +18,7 @@ const MenuList = [
     icon: <IconHome />,
   },
   {
-    title: "分类",
+    title: "时间轴",
     key: "/Classify",
     icon: <IconTags />,
   },
@@ -52,7 +52,8 @@ export default function HeaderMenu() {
         {MenuList.map((item) => {
           return (
             <MenuItem key={item.key} _key={item.key}>
-              {item.icon} {item.title}
+              {item.icon}
+              {item.title}
             </MenuItem>
           );
         })}

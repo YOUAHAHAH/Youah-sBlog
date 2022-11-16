@@ -1,4 +1,5 @@
 import Disposition from "./reducer/Disposition";
+import LoginState from "./reducer/Login";
 
 import {
   legacy_createStore as createStore,
@@ -10,6 +11,6 @@ import {
 import thunk from "redux-thunk";
 
 // 汇总reducer
-const allReducer = combineReducers({ Disposition });
+const allReducer = combineReducers({ Disposition, LoginState });
 
 export default createStore(allReducer, applyMiddleware(thunk));

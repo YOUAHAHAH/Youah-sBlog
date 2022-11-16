@@ -14,6 +14,5 @@ export default function Disposition(state = defaultTheme, action) {
       localStorage.setItem("BlogTheme", data);
       return (state = data);
   }
-
   return state;
 }

@@ -15,14 +15,16 @@ export default defineConfig({
   server: {
     port: 8008,
     open: true,
-    //   proxy: {
-    //     "/api": {
-    //       target: "http://localhost:3000",
-    //       // target: "http://admin.youah.cc:3000",
-    //       changeOrigin: true,
-    //       pathRewrite: { "^/api": "/" },
-    //     },
-    //   },
+    proxy: {
+      "/api": {
+        target: "http://admin.youah.cc:3000",
+        changeOrigin: true,
+        pathRewrite: { "^/api": "/" },
+      },
+    },
+  },
+  preview: {
+    port: 8080,
   },
 
   // 预处理less

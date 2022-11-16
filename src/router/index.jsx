@@ -1,11 +1,7 @@
-import {
-  HashRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthRoute } from "./AuthRoute";
 import routers from "./router.js";
+import Login from "../pages/Login/index";
 
 import App from "../App";
 
@@ -40,6 +36,8 @@ const BaseRouter = () => (
           );
         })}
       </Route>
+      {/* 登录 */}
+      <Route exact path="/Login" element={<Login />} />
     </Routes>
   </Router>
 );

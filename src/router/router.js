@@ -15,7 +15,7 @@ let routers = [
     component: Home,
   },
   {
-    title: "分类",
+    title: "时间轴",
     path: "/Classify",
     component: Classify,
   },

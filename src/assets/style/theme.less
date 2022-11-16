@@ -1,6 +1,6 @@
 body {
-  background-color: var(--color-bg-1);
-  color: var(--color-text-1);
+  background-color: (var(--color-bg-1));
+  color: (var(--color-text-1));
   // transition: all 0.4s;
 }
 
@@ -13,6 +13,130 @@ body {
 .arco-menu-light .arco-menu-pop-header,
 .arco-menu-light .arco-menu-inline-header {
   background-color: transparent !important;
+}
+
+.arco-pagination-list {
+  width: 100%;
+}
+
+.arco-tag-checked {
+  background-color: transparent !important;
+}
+
+.arco-tag {
+  font-size: 14px !important;
+}
+
+body[arco-theme="dark"] .arco-tag-checked.arco-tag-red {
+  color: rgb(var(--red-6));
+}
+body[arco-theme="dark"] .arco-tag-checked.arco-tag-orangered {
+  color: rgb(var(--orangered-6));
+}
+body[arco-theme="dark"] .arco-tag-checked.arco-tag-orange {
+  color: rgb(var(--orange-6));
+}
+body[arco-theme="dark"] .arco-tag-checked.arco-tag-gold {
+  color: rgb(var(--gold-6));
+}
+body[arco-theme="dark"] .arco-tag-checked.arco-tag-lime {
+  color: rgb(var(--lime-6));
+}
+body[arco-theme="dark"] .arco-tag-checked.arco-tag-green {
+  color: rgb(var(--green-6));
+}
+body[arco-theme="dark"] .arco-tag-checked.arco-tag-cyan {
+  color: rgb(var(--cyan-6));
+}
+body[arco-theme="dark"] .arco-tag-checked.arco-tag-blue {
+  color: rgb(var(--blue-6));
+}
+body[arco-theme="dark"] .arco-tag-checked.arco-tag-arcoblue {
+  color: rgb(var(--arcoblue-6));
+}
+body[arco-theme="dark"] .arco-tag-checked.arco-tag-purple {
+  color: rgb(var(--purple-6));
+}
+body[arco-theme="dark"] .arco-tag-checked.arco-tag-pinkpurple {
+  color: rgb(var(--pinkpurple-6));
+}
+body[arco-theme="dark"] .arco-tag-checked.arco-tag-magenta {
+  color: rgb(var(--magenta-6));
+}
+body[arco-theme="dark"] .arco-tag-checked.arco-tag-gray {
+  color: rgb(var(--gray-6));
+}
+body[arco-theme="dark"] a {
+  color: #fff;
+}
+div.arco-typography,
+p.arco-typography,
+.arco-typography {
+  margin-bottom: 5px !important;
+}
+
+.arco-timeline-item-vertical-left.arco-timeline-item-label-relative {
+  margin-left: 70px !important;
+}
+
+.arco-timeline,
+.arco-timeline-left,
+.arco-timeline-direction-vertical {
+  width: 70% !important;
+}
+
+.arco-card {
+  border-radius: 8px;
+}
+
+h2.arco-typography {
+  margin-top: 0 !important;
+}
+
+.custom-comment-action {
+  padding: 0 4px;
+  line-height: 24px;
+  border-radius: 2px;
+  background: transparent;
+  transition: all 0.1s ease;
+  color: var(--color-text-1);
+  cursor: pointer;
+  display: inline-block;
+}
+
+.custom-comment-action:hover {
+  background: var(--color-fill-3);
+}
+
+.arco-skeleton-header {
+  width: 100%;
+}
+
+.arco-input-group {
+  width: 70%;
+}
+
+.arco-form-item-control-children {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sc-bcXHqe,
+.iPtRTz,
+.react-captcha {
+  width: 80px !important;
+  height: 40px !important;
+}
+
+@media screen and (min-width: 760px) {
+  flex-direction: row;
+}
+@media (min-width: 0px) and (max-width: 760px) {
+  .arco-card,
+  .arco-card-size-default,
+  .arco-card-hoverable {
+    min-width: 260px !important;
+  }
 }
 
 // content 滚动条样式

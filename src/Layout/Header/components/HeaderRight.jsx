@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   createDarkTheme,
   createLightTheme,
 } from "../../../store/actions/Disposition.js";
+import { createLogin, createRegister } from "../../../store/actions/Login.js";
 import { Button, Tooltip } from "@arco-design/web-react";
 import {
   IconSunFill,
@@ -21,6 +23,7 @@ const themeState =
     : localStorage.getItem("BlogTheme");
 
 const HeaderRight = (props) => {
+  const navigate = useNavigate();
   const [full, setFull] = useState(false); // 全屏
   const [themeStatus, setThemeStatus] = useState(() => {
     return themeState === "true" ? true : false;
@@ -84,6 +87,18 @@ const HeaderRight = (props) => {
     document.body.setAttribute("arco-theme", "dark");
     props.LightTheme("false");
     localStorage.setItem("BlogTheme", "false");
+  };
+
+  // 登录
+  const handleLogin = () => {
+    navigate("/Login", { state: { id: 0 } });
+    props.LoginBtn(0);
+  };
+
+  // 注册
+  const handleRes = () => {
+    navigate("/Login", { state: { id: 1 } });
+    props.RegisterBtn(1);
   };
 
   useEffect(() => {
@@ -157,17 +172,19 @@ const HeaderRight = (props) => {
           />
         ) : (
           <Button
-            style={{
-              color: "black",
-            }}
+            style={{ color: "black" }}
             type="text"
             icon={<IconSunFill />}
             onClick={getThemeDark}
           />
         )}
       </Tooltip>
-      <Button type="text">登录</Button>
-      <Button type="text">注册</Button>
+      <Button type="text" onClick={handleLogin}>
+        登录
+      </Button>
+      <Button type="text" onClick={handleRes}>
+        注册
+      </Button>
     </div>
   );
 };
@@ -175,4 +192,6 @@ const HeaderRight = (props) => {
 export default connect((state) => ({ theme: state.Disposition }), {
   DarkTheme: createDarkTheme,
   LightTheme: createLightTheme,
+  LoginBtn: createLogin,
+  RegisterBtn: createRegister,
 })(HeaderRight);

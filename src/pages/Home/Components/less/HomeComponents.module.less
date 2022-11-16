@@ -1,0 +1,160 @@
+.left {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  svg {
+    margin-right: 10px;
+  }
+  @media screen and (min-width: 760px) {
+    width: 25%;
+    position: sticky;
+    top: 10px;
+  }
+  @media (min-width: 320px) and (max-width: 760px) {
+    width: 100%;
+  }
+  .cardStyleLeft {
+    margin-bottom: 20px;
+    border-radius: 8px !important;
+    text-align: center;
+    height: 300px;
+    .arcoCardCover {
+      border-radius: 8px;
+      overflow: hidden;
+      height: 130px;
+      line-height: 130px;
+    }
+    .arcoCardBody {
+      height: 120px;
+      width: 100%;
+      margin-bottom: 20px;
+      cursor: default;
+      h4 {
+        display: block;
+        margin-bottom: 5px;
+        margin-top: 5px;
+      }
+      p {
+        font-size: 18px;
+        font-weight: bold;
+      }
+      .userPage {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: nowrap;
+        div {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          font-size: 16px;
+        }
+      }
+    }
+    img {
+      cursor: default;
+      height: 100px;
+      width: 100px;
+      border-radius: 50%;
+      transform: rotate(0deg);
+      transition: transform 0.5s;
+      &:hover {
+        transform: rotate(360deg);
+        transition: transform 0.5s;
+      }
+    }
+  }
+  .arcoBulb {
+    width: 100%;
+    border-radius: 8px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    cursor: default;
+    div {
+      &:nth-child(1) {
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+      &:nth-child(2) {
+        font-size: 13px;
+      }
+    }
+  }
+  .arcoTag {
+    width: 100%;
+    border-radius: 8px !important;
+    margin-bottom: 20px;
+    cursor: default;
+  }
+}
+
+.right {
+  @media screen and (min-width: 760px) {
+    width: 73%;
+  }
+  @media (min-width: 320px) and (max-width: 760px) {
+    width: 100%;
+  }
+  .cardStyleRight {
+    margin-bottom: 20px;
+    border-radius: 8px !important;
+    height: 210px;
+    .arcoCardBody {
+      display: flex;
+      .arcoCardCover {
+        width: 40%;
+        overflow: hidden;
+        height: 100%;
+        img {
+          height: 100%;
+          width: 40%;
+          border-radius: 8px 0 0 8px;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-attachment: local;
+          background-position: center;
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+      }
+      .arcoCardContent {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 60%;
+        padding-left: 30px;
+        margin-top: 5px;
+        h2 {
+          svg {
+            margin-right: 5px;
+          }
+        }
+        .arcoCardDate {
+          width: 100%;
+          margin-top: 10px;
+          margin-bottom: 20px;
+          span {
+            margin-right: 5px;
+            svg {
+              margin-right: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.footer {
+  @media screen and (min-width: 760px) {
+    width: 100%;
+  }
+  @media (min-width: 0) and (max-width: 760px) {
+    display: none;
+  }
+}
