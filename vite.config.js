@@ -13,8 +13,9 @@ const __APP_INFO__ = {
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 8008,
-    open: true,
+    // port: 8008,
+    // host: '192.168.43.18',
+    // open: true,
     proxy: {
       "/api": {
         target: "http://admin.youah.cc:3000",
@@ -23,9 +24,9 @@ export default defineConfig({
       },
     },
   },
-  preview: {
-    port: 8080,
-  },
+  // preview: {
+  //   port: 8008,
+  // },
 
   // 预处理less
   css: {

@@ -1,9 +1,9 @@
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthRoute } from "./AuthRoute";
 import routers from "./router.js";
-import Login from "../pages/Login/index";
 
-import App from "../App";
+import App from "../App.jsx";
+import Login from "../pages/Login/index";
 
 // 自定义标题
 const pageTitle = import.meta.env.VITE_DEFAULT_TITLE;
@@ -19,9 +19,9 @@ const BaseRouter = () => (
         path="/"
         element={
           // 鉴权，判断是否有token
-          <AuthRoute>
-            <App />
-          </AuthRoute>
+          // <AuthRoute>
+          <App />
+          //  </AuthRoute>
         }
       >
         {/* 公共路由 */}
