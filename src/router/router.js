@@ -6,7 +6,6 @@
 import Home from "../pages/Home/Home";
 import Classify from "../pages/Classify/Classify";
 import Link from "../pages/Link/Link";
-import Blogging from "../pages/Blogging/Blogging";
 
 let routers = [
   {
@@ -23,11 +22,6 @@ let routers = [
     title: "友链",
     path: "/Link",
     component: Link,
-  },
-  {
-    title: "写博客",
-    path: "/Blogging",
-    component: Blogging,
   },
 ];
 

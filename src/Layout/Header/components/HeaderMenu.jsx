@@ -5,7 +5,6 @@ import {
   IconHome,
   IconTags,
   IconLink,
-  IconEdit,
 } from "@arco-design/web-react/icon";
 import h from "../../index.module.less";
 
@@ -26,11 +25,6 @@ const MenuList = [
     title: "友链",
     key: "/Link",
     icon: <IconLink />,
-  },
-  {
-    title: "写博客",
-    key: "/Blogging",
-    icon: <IconEdit />,
   },
 ];
 

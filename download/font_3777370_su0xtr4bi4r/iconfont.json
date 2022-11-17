@@ -1,0 +1,23 @@
+{
+  "id": "3777370",
+  "name": "blog",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1478906",
+      "name": "ic_gps_not_fixed",
+      "font_class": "ic_gps_not_fixed",
+      "unicode": "e9a2",
+      "unicode_decimal": 59810
+    },
+    {
+      "icon_id": "19761439",
+      "name": "ic24-gps-fixed",
+      "font_class": "ic24-gps-fixed",
+      "unicode": "f2e1",
+      "unicode_decimal": 62177
+    }
+  ]
+}

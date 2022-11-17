@@ -6,6 +6,10 @@ import {
   createLightTheme,
 } from "../../../store/actions/Disposition.js";
 import { createLogin, createRegister } from "../../../store/actions/Login.js";
+import {
+  createSettingHeaderTrue,
+  createSettingHeaderFalse,
+} from "../../../store/actions/Setting.js";
 import { Button, Tooltip } from "@arco-design/web-react";
 import {
   IconSunFill,
@@ -21,6 +25,10 @@ const themeState =
   localStorage.getItem("BlogTheme") === null
     ? "true"
     : localStorage.getItem("BlogTheme");
+const BlogSetting =
+  localStorage.getItem("BlogSetting") === null
+    ? { BlogSettingHeader: "true" }
+    : JSON.parse(localStorage.getItem("BlogSetting"));
 
 const HeaderRight = (props) => {
   const navigate = useNavigate();
@@ -28,6 +36,9 @@ const HeaderRight = (props) => {
   const [themeStatus, setThemeStatus] = useState(() => {
     return themeState === "true" ? true : false;
   }); // 主题
+  const [headerStatus, setHeaderStatus] = useState(() => {
+    return BlogSetting.BlogSettingHeader === "true" ? true : false;
+  });
 
   // 设置全屏和退出全屏
   const handleFullScreen = () => {
@@ -91,14 +102,34 @@ const HeaderRight = (props) => {
 
   // 登录
   const handleLogin = () => {
-    navigate("/Login", { state: { id: 0 } });
+    navigate("/Login");
     props.LoginBtn(0);
   };
 
   // 注册
   const handleRes = () => {
-    navigate("/Login", { state: { id: 1 } });
+    navigate("/Login");
     props.RegisterBtn(1);
+  };
+
+  // 设置固定头部
+  const fixedHeaderTrue = () => {
+    setHeaderStatus(!headerStatus);
+    props.HeaderTrue("true");
+    localStorage.setItem(
+      "BlogSetting",
+      JSON.stringify({ BlogSettingHeader: "true" })
+    );
+  };
+
+  // 取消固定头部
+  const fixedHeaderFalse = () => {
+    setHeaderStatus(!headerStatus);
+    props.HeaderFalse("false");
+    localStorage.setItem(
+      "BlogSetting",
+      JSON.stringify({ BlogSettingHeader: "false" })
+    );
   };
 
   useEffect(() => {
@@ -115,83 +146,135 @@ const HeaderRight = (props) => {
     } else {
       getThemeDark();
     }
+
+    if (headerStatus === "true") {
+      fixedHeaderTrue();
+    } else {
+      fixedHeaderFalse();
+    }
   }, []);
 
   return (
-    <div className={h.btnGroup}>
-      {/* 搜索 */}
-      <Tooltip
-        position="bottom"
-        trigger="hover"
-        mini
-        color={"#4E5969"}
-        content="搜索"
-      >
-        <Button type="text" icon={<IconSearch />} />
-      </Tooltip>
+    <>
+      <div className={h.btnGroup}>
+        {/* 搜索 */}
+        <Tooltip
+          position="bottom"
+          trigger="hover"
+          mini
+          color={"#4E5969"}
+          content="搜索"
+        >
+          <Button type="text" icon={<IconSearch />} />
+        </Tooltip>
 
-      {/* 全屏切换 */}
-      <Tooltip
-        position="bottom"
-        trigger="hover"
-        mini
-        color={"#4E5969"}
-        content={full ? "退出全屏" : "全屏"}
-      >
-        {full ? (
-          <Button
-            type="text"
-            icon={<IconFullscreenExit />}
-            onClick={handleFullScreen}
-          />
-        ) : (
-          <Button
-            type="text"
-            icon={<IconFullscreen />}
-            onClick={handleFullScreen}
-          />
-        )}
-      </Tooltip>
+        {/* 全屏切换 */}
+        <Tooltip
+          position="bottom"
+          trigger="hover"
+          mini
+          color={"#4E5969"}
+          content={full ? "退出全屏" : "全屏"}
+        >
+          {full ? (
+            <Button
+              type="text"
+              icon={<IconFullscreenExit />}
+              onClick={handleFullScreen}
+            />
+          ) : (
+            <Button
+              type="text"
+              icon={<IconFullscreen />}
+              onClick={handleFullScreen}
+            />
+          )}
+        </Tooltip>
 
-      {/* 主题颜色切换 */}
-      <Tooltip
-        position="bottom"
-        trigger="hover"
-        mini
-        color={"#4E5969"}
-        content={themeStatus ? "暗黑模式" : "亮色模式"}
-      >
-        {themeStatus ? (
-          <Button
-            style={{
-              color: "white",
-            }}
-            type="text"
-            icon={<IconMoonFill />}
-            onClick={getThemeLight}
-          />
-        ) : (
-          <Button
-            style={{ color: "black" }}
-            type="text"
-            icon={<IconSunFill />}
-            onClick={getThemeDark}
-          />
-        )}
-      </Tooltip>
-      <Button type="text" onClick={handleLogin}>
-        登录
-      </Button>
-      <Button type="text" onClick={handleRes}>
-        注册
-      </Button>
-    </div>
+        {/* 主题颜色切换 */}
+        <Tooltip
+          position="bottom"
+          trigger="hover"
+          mini
+          color={"#4E5969"}
+          content={themeStatus ? "暗黑模式" : "亮色模式"}
+        >
+          {themeStatus ? (
+            <Button
+              style={{
+                color: "white",
+              }}
+              type="text"
+              icon={<IconMoonFill />}
+              onClick={getThemeLight}
+            />
+          ) : (
+            <Button
+              style={{ color: "black" }}
+              type="text"
+              icon={<IconSunFill />}
+              onClick={getThemeDark}
+            />
+          )}
+        </Tooltip>
+
+        {/* 设置 */}
+        <Tooltip
+          position="bottom"
+          trigger="hover"
+          mini
+          color={"#4E5969"}
+          content={headerStatus ? "取消固定Header" : "固定Header"}
+        >
+          {headerStatus ? (
+            <Button
+              style={{
+                color: "white",
+                padding: "0 6px 0 6px",
+                lineHeight: "30px",
+              }}
+              type="text"
+              onClick={fixedHeaderTrue}
+            >
+              <span
+                className="iconfont icon-ic24-gps-fixed"
+                style={{ fontSize: "18px" }}
+              ></span>
+            </Button>
+          ) : (
+            <Button
+              style={{
+                color: "white",
+                padding: "0 6px 0 6px",
+                lineHeight: "30px",
+              }}
+              type="text"
+              onClick={fixedHeaderFalse}
+            >
+              <span
+                className="iconfont icon-ic_gps_not_fixed"
+                style={{ fontSize: "18px" }}
+              ></span>
+            </Button>
+          )}
+        </Tooltip>
+
+        <Button type="text" onClick={handleLogin}>
+          登录
+        </Button>
+        <Button type="text" onClick={handleRes}>
+          注册
+        </Button>
+      </div>
+    </>
   );
 };
 
-export default connect((state) => ({ theme: state.Disposition }), {
+export default connect((state) => ({ checked: state.Setting }), {
   DarkTheme: createDarkTheme,
   LightTheme: createLightTheme,
   LoginBtn: createLogin,
   RegisterBtn: createRegister,
+  HeaderTrue: createSettingHeaderTrue,
+  HeaderFalse: createSettingHeaderFalse,
 })(HeaderRight);

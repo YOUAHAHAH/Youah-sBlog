@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   Comment,
-  Avatar,
   Typography,
   Button,
   Input,
@@ -83,7 +82,11 @@ export default function Comments() {
             avatar="//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/e278888093bef8910e829486fb45dd69.png~tplv-uwbnlip3yd-webp.webp"
             content={
               <div>
-                <Input.TextArea placeholder="Here is you content." />
+                <Input.TextArea
+                  maxLength={{ length: 120, errorOnly: true }}
+                  showWordLimit
+                  placeholder="Here is you content."
+                />
               </div>
             }
           ></Comment>
@@ -126,7 +129,11 @@ export default function Comments() {
               avatar="//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/e278888093bef8910e829486fb45dd69.png~tplv-uwbnlip3yd-webp.webp"
               content={
                 <div>
-                  <Input.TextArea placeholder="Here is you content." />
+                  <Input.TextArea
+                    maxLength={{ length: 120, errorOnly: true }}
+                    showWordLimit
+                    placeholder="Here is you content."
+                  />
                 </div>
               }
             ></Comment>
@@ -169,7 +176,11 @@ export default function Comments() {
               avatar="//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/e278888093bef8910e829486fb45dd69.png~tplv-uwbnlip3yd-webp.webp"
               content={
                 <div>
-                  <Input.TextArea placeholder="Here is you content." />
+                  <Input.TextArea
+                    maxLength={{ length: 120, errorOnly: true }}
+                    showWordLimit
+                    placeholder="Here is you content."
+                  />
                 </div>
               }
             ></Comment>
@@ -212,7 +223,11 @@ export default function Comments() {
               avatar="//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/e278888093bef8910e829486fb45dd69.png~tplv-uwbnlip3yd-webp.webp"
               content={
                 <div>
-                  <Input.TextArea placeholder="Here is you content." />
+                  <Input.TextArea
+                    maxLength={{ length: 120, errorOnly: true }}
+                    showWordLimit
+                    placeholder="Here is you content."
+                  />
                 </div>
               }
             ></Comment>
