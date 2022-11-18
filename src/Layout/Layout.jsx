@@ -11,7 +11,7 @@ const Content = Layout.Content;
 
 const index = (props) => {
   const [getOpacity, setGetOpacity] = useState("0.9");
-  const [fixedHeader, setFixedHeader] = useState(props.header);
+  // const [fixedHeader, setFixedHeader] = useState(null);
 
   const sectionStyle = {
     backgroundImage: `url(${bg})`,
@@ -21,8 +21,10 @@ const index = (props) => {
   useEffect(() => {
     props.theme === "true" ? setGetOpacity("0.9") : setGetOpacity("0.2");
     // props.header === "true" ? setFixedHeader(false) : setFixedHeader(true);
-    // console.log(props.header);
-  }, [props.theme, props.header]);
+  }, [
+    props.theme,
+    // , props.header
+  ]);
 
   return (
     <Layout style={{ height: "100vh", width: "100vw" }}>
@@ -32,14 +34,14 @@ const index = (props) => {
         style={{ position: "absolute" }}
         target={() => document.getElementById("custom_backtop0")}
       />
-      {fixedHeader ? (
-        <>
-          <Header />
-          <Content className={h.layOutContent} id="custom_backtop0">
-            <Outlet />
-            <Footer />
-          </Content>
-        </>
+      {/* {fixedHeader ? (
+        <> */}
+      <Header />
+      <Content className={h.layOutContent} id="custom_backtop0">
+        <Outlet />
+        <Footer />
+      </Content>
+      {/* </>
       ) : (
         <>
           <Content
@@ -52,7 +54,7 @@ const index = (props) => {
             <Footer />
           </Content>
         </>
-      )}
+      )} */}
     </Layout>
   );
 };

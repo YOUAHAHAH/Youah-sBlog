@@ -5,6 +5,7 @@ import routers from "./router.js";
 import App from "../App.jsx";
 import Login from "../pages/Login/index";
 import Error from "../pages/Error/Error";
+import Article from "../pages/Article/Article";
 
 // 自定义标题
 const pageTitle = import.meta.env.VITE_DEFAULT_TITLE;
@@ -36,6 +37,7 @@ const BaseRouter = () => (
             />
           );
         })}
+        <Route exact path="/article" element={<Article />} />
       </Route>
       {/* 登录 */}
       <Route exact path="/Login" element={<Login />} />

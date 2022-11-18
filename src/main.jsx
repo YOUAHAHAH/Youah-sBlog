@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import "./assets/style/theme.less";
 import "./assets/style/basc.less";
 import "@arco-design/web-react/dist/css/arco.css";
+import "default-passive-events"; // Chrome 增加了新的事件捕获机制－Passive Event Listeners；
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

@@ -8,16 +8,16 @@ export default function Disposition(state = defaultHeader, action) {
 
   switch (type) {
     case "getSettingHeaderTrue":
-      // localStorage.setItem(
-      //   "BlogSetting",
-      //   JSON.stringify({ BlogSettingHeader: data })
-      // );
+      localStorage.setItem(
+        "BlogSetting",
+        JSON.stringify({ BlogSettingHeader: data })
+      );
       return (state = data);
     case "getSettingHeaderFalse":
-      // localStorage.setItem(
-      //   "BlogSetting",
-      //   JSON.stringify({ BlogSettingHeader: data })
-      // );
+      localStorage.setItem(
+        "BlogSetting",
+        JSON.stringify({ BlogSettingHeader: data })
+      );
       return (state = data);
   }
   return state;

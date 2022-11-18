@@ -1,4 +1,5 @@
 import React, { useCallback, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Form, Input, Button, Link } from "@arco-design/web-react";
 import {
   IconUser,
@@ -12,6 +13,7 @@ import l from "../Login.module.less";
 const FormItem = Form.Item;
 
 const Res = () => {
+  const navigate = useNavigate();
   const [form] = Form.useForm();
   const captchaRef = useRef();
   const [formData, setFormData] = useState({
@@ -126,10 +128,16 @@ const Res = () => {
         </Button>
       </FormItem>
       <FormItem>
-        <Link href="#" style={{ color: "#165DFF" }} hoverable={false}>
+        <Button
+          type="text"
+          style={{ color: "#165DFF" }}
+          onClick={() => {
+            navigate("/Home");
+          }}
+        >
           暂不注册
           <IconDoubleRight />
-        </Link>
+        </Button>
       </FormItem>
     </Form>
   );

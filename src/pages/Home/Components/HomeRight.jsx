@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, Typography, Pagination } from "@arco-design/web-react";
 import {
   IconCalendar,
@@ -10,6 +11,7 @@ import h from "./less/HomeComponents.module.less";
 import bg from "../../../assets/img/bg1.jpg";
 
 export default function HomeRight() {
+  const navigate = useNavigate();
   const [pagination, setPagination] = useState({
     total: 100,
     current: 1,
@@ -18,7 +20,15 @@ export default function HomeRight() {
   return (
     <div className={h.right}>
       <QueueAnim type={["right", "left"]} className="demo-content">
-        <Card key="a" className={h.cardStyleRight} bordered={false} hoverable>
+        <Card
+          key="a"
+          className={h.cardStyleRight}
+          bordered={false}
+          hoverable
+          onClick={() => {
+            navigate("/Article");
+          }}
+        >
           <div className={h.arcoCardBody}>
             <div className={h.arcoCardCover}>
               <img src={bg} />

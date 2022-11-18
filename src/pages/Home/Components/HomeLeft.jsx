@@ -1,5 +1,5 @@
-import React from "react";
-import { Card, Statistic, Tag } from "@arco-design/web-react";
+import React, { useState } from "react";
+import { Card, Statistic, Tag, Skeleton, Avatar } from "@arco-design/web-react";
 import { IconBulb, IconTag } from "@arco-design/web-react/icon";
 import QueueAnim from "rc-queue-anim";
 import h from "./less/HomeComponents.module.less";
@@ -22,6 +22,8 @@ const COLORS = [
 ];
 
 export default function HomeLeft() {
+  const [loading, setLoading] = useState(true);
+
   return (
     <div className={h.left}>
       <QueueAnim type={["left", "right"]} className="demo-content">

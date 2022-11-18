@@ -6,10 +6,10 @@ import {
   createLightTheme,
 } from "../../../store/actions/Disposition.js";
 import { createLogin, createRegister } from "../../../store/actions/Login.js";
-import {
-  createSettingHeaderTrue,
-  createSettingHeaderFalse,
-} from "../../../store/actions/Setting.js";
+// import {
+//   createSettingHeaderTrue,
+//   createSettingHeaderFalse,
+// } from "../../../store/actions/Setting.js";
 import { Button, Tooltip } from "@arco-design/web-react";
 import {
   IconSunFill,
@@ -19,16 +19,38 @@ import {
   IconSearch,
 } from "@arco-design/web-react/icon";
 import h from "../../index.module.less";
+import Intro from "../../../utils/Intro";
+
+Intro.setOptions({
+  steps: [
+    {
+      element: "#step1",
+      intro: "输入关键字即可搜索文章",
+    },
+    {
+      element: "#step2",
+      intro: "点击即可全屏,ESC即可退出全屏",
+    },
+    {
+      element: "#step3",
+      intro: "默认为亮色模式,点击即可更改为黑暗模式",
+    },
+    {
+      element: "#step4",
+      intro: "默认为游客模式,登录即可评论和点赞",
+    },
+  ],
+});
 
 // 用户是否是第一次进入
 const themeState =
   localStorage.getItem("BlogTheme") === null
     ? "true"
     : localStorage.getItem("BlogTheme");
-const BlogSetting =
-  localStorage.getItem("BlogSetting") === null
-    ? { BlogSettingHeader: "true" }
-    : JSON.parse(localStorage.getItem("BlogSetting"));
+// const BlogSetting =
+//   JSON.parse(localStorage.getItem("BlogSetting")).BlogSettingHeader === null
+//     ? { BlogSettingHeader: "true" }
+//     : JSON.parse(localStorage.getItem("BlogSetting"));
 
 const HeaderRight = (props) => {
   const navigate = useNavigate();
@@ -36,9 +58,18 @@ const HeaderRight = (props) => {
   const [themeStatus, setThemeStatus] = useState(() => {
     return themeState === "true" ? true : false;
   }); // 主题
-  const [headerStatus, setHeaderStatus] = useState(() => {
-    return BlogSetting.BlogSettingHeader === "true" ? true : false;
-  });
+  // const [headerStatus, setHeaderStatus] = useState(() => {
+  //   return BlogSetting.BlogSettingHeader === "true" ? true : false;
+  // });
+  const { stepState, changeState } = props;
+
+  // 引导
+  useEffect(() => {
+    if (stepState) {
+      Intro.start();
+      changeState(false);
+    }
+  }, [stepState]);
 
   // 设置全屏和退出全屏
   const handleFullScreen = () => {
@@ -113,24 +144,16 @@ const HeaderRight = (props) => {
   };
 
   // 设置固定头部
-  const fixedHeaderTrue = () => {
-    setHeaderStatus(!headerStatus);
-    props.HeaderTrue("true");
-    localStorage.setItem(
-      "BlogSetting",
-      JSON.stringify({ BlogSettingHeader: "true" })
-    );
-  };
+  // const fixedHeaderTrue = () => {
+  //   setHeaderStatus(!headerStatus);
+  //   props.HeaderTrue("true");
+  // };
 
   // 取消固定头部
-  const fixedHeaderFalse = () => {
-    setHeaderStatus(!headerStatus);
-    props.HeaderFalse("false");
-    localStorage.setItem(
-      "BlogSetting",
-      JSON.stringify({ BlogSettingHeader: "false" })
-    );
-  };
+  // const fixedHeaderFalse = () => {
+  //   setHeaderStatus(!headerStatus);
+  //   props.HeaderFalse("false");
+  // };
 
   useEffect(() => {
     window.onresize = function () {
@@ -147,11 +170,11 @@ const HeaderRight = (props) => {
       getThemeDark();
     }
 
-    if (headerStatus === "true") {
-      fixedHeaderTrue();
-    } else {
-      fixedHeaderFalse();
-    }
+    // if (headerStatus === "true") {
+    //   setHeaderStatus(true);
+    // } else {
+    //   setHeaderStatus(false);
+    // }
   }, []);
 
   return (
@@ -165,7 +188,7 @@ const HeaderRight = (props) => {
           color={"#4E5969"}
           content="搜索"
         >
-          <Button type="text" icon={<IconSearch />} />
+          <Button type="text" icon={<IconSearch />} id="step1" />
         </Tooltip>
 
         {/* 全屏切换 */}
@@ -181,12 +204,14 @@ const HeaderRight = (props) => {
               type="text"
               icon={<IconFullscreenExit />}
               onClick={handleFullScreen}
+              id="step2"
             />
           ) : (
             <Button
               type="text"
               icon={<IconFullscreen />}
               onClick={handleFullScreen}
+              id="step2"
             />
           )}
         </Tooltip>
@@ -207,6 +232,7 @@ const HeaderRight = (props) => {
               type="text"
               icon={<IconMoonFill />}
               onClick={getThemeLight}
+              id="step3"
             />
           ) : (
             <Button
@@ -214,12 +240,13 @@ const HeaderRight = (props) => {
               type="text"
               icon={<IconSunFill />}
               onClick={getThemeDark}
+              id="step3"
             />
           )}
         </Tooltip>
 
         {/* 设置 */}
-        <Tooltip
+        {/* <Tooltip
           position="bottom"
           trigger="hover"
           mini
@@ -257,9 +284,9 @@ const HeaderRight = (props) => {
               ></span>
             </Button>
           )}
-        </Tooltip>
+        </Tooltip> */}
 
-        <Button type="text" onClick={handleLogin}>
+        <Button type="text" onClick={handleLogin} id="step4">
           登录
         </Button>
         <Button type="text" onClick={handleRes}>
@@ -275,6 +302,6 @@ export default connect((state) => ({ checked: state.Setting }), {
   LightTheme: createLightTheme,
   LoginBtn: createLogin,
   RegisterBtn: createRegister,
-  HeaderTrue: createSettingHeaderTrue,
-  HeaderFalse: createSettingHeaderFalse,
+  // HeaderTrue: createSettingHeaderTrue,
+  // HeaderFalse: createSettingHeaderFalse,
 })(HeaderRight);
