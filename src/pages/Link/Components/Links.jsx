@@ -1,5 +1,12 @@
 import React from "react";
-import { Typography, Card, Link } from "@arco-design/web-react";
+import {
+  Typography,
+  Card,
+  Comment,
+  Button,
+  Input,
+  Divider,
+} from "@arco-design/web-react";
 import { IconRobotAdd } from "@arco-design/web-react/icon";
 import l from "../Link.module.less";
 import bg from "../../../assets/img/bg.jpg";
@@ -33,6 +40,26 @@ export default function Links() {
           </div>
         </Card>
       </div>
+      <Divider className={l.line} />
+      <Comment
+        align="right"
+        actions={
+          <Button type="primary" long>
+            发送
+          </Button>
+        }
+        avatar="//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/e278888093bef8910e829486fb45dd69.png~tplv-uwbnlip3yd-webp.webp"
+        content={
+          <div>
+            <Input.TextArea
+              placeholder="文明评论，友善发言"
+              maxLength={{ length: 50, errorOnly: true }}
+              showWordLimit
+              allowClear
+            />
+          </div>
+        }
+      ></Comment>
     </div>
   );
 }

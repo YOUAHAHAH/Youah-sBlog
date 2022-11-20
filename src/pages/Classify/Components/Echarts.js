@@ -1,7 +1,26 @@
+import * as echarts from "echarts";
+import {
+  TitleComponent,
+  TooltipComponent,
+  LegendComponent,
+} from "echarts/components";
+import { PieChart } from "echarts/charts";
+import { LabelLayout } from "echarts/features";
+import { CanvasRenderer } from "echarts/renderers";
+
+echarts.use([
+  TitleComponent,
+  TooltipComponent,
+  LegendComponent,
+  PieChart,
+  CanvasRenderer,
+  LabelLayout,
+]);
+
 const optionPieChart = {
   title: {
-    text: "Referer of a Website",
-    subtext: "Fake Data",
+    text: "文章标签",
+    // subtext: "Fake Data",
     left: "center",
   },
   tooltip: {

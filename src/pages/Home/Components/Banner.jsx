@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Skeleton, Message } from "@arco-design/web-react";
 import BannerAnim from "rc-banner-anim";
 import TweenOne, { TweenOneGroup } from "rc-tween-one";
@@ -12,14 +13,8 @@ import { HomeBanner } from "../../../api/Home";
 const { Element, Arrow, Thumb } = BannerAnim;
 const BgElement = Element.BgElement;
 
-// const imgArray = [
-//   "https://zos.alipayobjects.com/rmsportal/hzPBTkqtFpLlWCi.jpg",
-//   "https://zos.alipayobjects.com/rmsportal/gGlUMYGEIvjDOOw.jpg",
-//   bg,
-//   bg1,
-// ];
-
 export default function Home() {
+  const navigate = useNavigate();
   const [intShow, setIntShow] = useState(0);
   const [prevEnter, setPrevEnter] = useState(false);
   const [nextEnter, setNextEnter] = useState(false);
@@ -110,6 +105,10 @@ export default function Home() {
                     backgroundPosition: "center",
                     width: "100%",
                     height: "100%",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    navigate("/Article/" + item.id);
                   }}
                 />
               </Element>

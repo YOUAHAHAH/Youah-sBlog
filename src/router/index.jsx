@@ -37,7 +37,7 @@ const BaseRouter = () => (
             />
           );
         })}
-        <Route exact path="/article" element={<Article />} />
+        <Route exact path="/article/:id" element={<Article />} />
       </Route>
       {/* 登录 */}
       <Route exact path="/Login" element={<Login />} />

@@ -1,9 +1,17 @@
-import React, { useState } from "react";
-import { Card, Statistic, Tag, Skeleton, Avatar } from "@arco-design/web-react";
+import React, { useEffect, useState } from "react";
+import {
+  Card,
+  Statistic,
+  Tag,
+  Skeleton,
+  Avatar,
+  Message,
+} from "@arco-design/web-react";
 import { IconBulb, IconTag } from "@arco-design/web-react/icon";
 import QueueAnim from "rc-queue-anim";
 import h from "./less/HomeComponents.module.less";
 import bg from "../../../assets/img/bg1.jpg";
+import { HomeUserInfo } from "../../../api/Home";
 
 const COLORS = [
   "red",
@@ -23,6 +31,21 @@ const COLORS = [
 
 export default function HomeLeft() {
   const [loading, setLoading] = useState(true);
+  const [userInfo, setUserInfo] = useState([]);
+
+  const getHomeUserInfo = async () => {
+    const res = await HomeUserInfo();
+    const { code, data, msg } = res;
+    if (code === 200) {
+      setUserInfo([...data][0]);
+    } else {
+      Message.error(msg);
+    }
+  };
+
+  useEffect(() => {
+    getHomeUserInfo();
+  }, []);
 
   return (
     <div className={h.left}>
@@ -39,20 +62,20 @@ export default function HomeLeft() {
           }
         >
           <div className={h.arcoCardBody}>
-            <p>YOUAH</p>
-            <h4>少年不应该被世俗所牵挂!</h4>
+            <p>{userInfo.user_name}</p>
+            <h4>{userInfo.quotations}</h4>
             <div className={h.userPage}>
               <div>
                 <span>文章</span>
-                <Statistic value={50} countUp />
+                <Statistic value={userInfo.articles_number} countUp />
               </div>
               <div>
                 <span>标签</span>
-                <Statistic value={50} countUp />
+                <Statistic value={userInfo.classified_quantity} countUp />
               </div>
               <div>
                 <span>分类</span>
-                <Statistic value={50} countUp />
+                <Statistic value={userInfo.classified_quantity} countUp />
               </div>
             </div>
           </div>
@@ -62,7 +85,7 @@ export default function HomeLeft() {
             <IconBulb />
             公告
           </div>
-          <div>Welcome to YOUAH's Blog</div>
+          <div>{userInfo.notice}</div>
         </Card>
         <Card key="cc" className={h.arcoTag} bordered={false} hoverable>
           <div style={{ marginBottom: "10px" }}>

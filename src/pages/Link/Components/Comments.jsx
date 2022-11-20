@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-  Comment,
-  Typography,
-  Button,
-  Input,
-} from "@arco-design/web-react";
+import { Comment, Typography, Button, Input } from "@arco-design/web-react";
 import {
   IconHeart,
   IconMessage,
