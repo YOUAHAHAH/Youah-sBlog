@@ -1,0 +1,89 @@
+.lockModal {
+  width: 520px;
+}
+
+/* input 占位符颜色 */
+input::-webkit-input-placeholder {
+  color: #9f9b9b !important;
+  opacity: 0.8;
+}
+input:-ms-input-placeholder {
+  opacity: 0.8;
+  color: #9f9b9b !important;
+}
+input:-moz-placeholder {
+  opacity: 0.8;
+  color: #9f9b9b !important;
+}
+input::-moz-placeholder {
+  opacity: 0.8;
+  color: #9f9b9b !important;
+}
+
+.el-message {
+  z-index: 19999 !important;
+}
+
+.el-form-item__error {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.el-badge__content.is-fixed.is-dot {
+  top: 10px;
+  right: 10px;
+}
+
+.el-popover {
+  width: 250px !important;
+}
+
+.list {
+  border: 1px solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  color: #000000d9;
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  list-style: none;
+  font-weight: 400;
+  white-space: normal;
+  text-align: left;
+  cursor: auto;
+  &_li {
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    justify-content: space-between;
+    border-bottom: 1px solid #f0f0f0;
+    align-items: center;
+    &_content {
+      flex: 1 0;
+      color: #000000d9;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      div {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical; /*设置对其模式*/
+        -webkit-line-clamp: 1; /*设置盒子的行数*/
+        &:nth-child(1) {
+          color: #000000d9;
+          overflow-wrap: break-word;
+          cursor: pointer;
+        }
+        &:nth-child(2) {
+          color: #00000073;
+          font-size: 14px;
+          line-height: 1.5715;
+        }
+      }
+    }
+  }
+}

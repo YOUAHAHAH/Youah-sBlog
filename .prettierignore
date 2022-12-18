@@ -1,0 +1,10 @@
+# Ignore artifacts:
+build
+coverage
+
+# Ignore all HTML files:
+*.html
+
+# 格式化全部文档 npx prettier --write .
+# 格式化指定文档 npx prettier --write src/---
+# 检查文档是否已格式化 npx prettier --check .
