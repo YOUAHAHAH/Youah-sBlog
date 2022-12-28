@@ -1,11 +1,13 @@
 import { createRouter, createWebHashHistory, type Router } from 'vue-router';
 import type { RouteRecordRaw } from 'vue-router';
-import type { AppRouteRecordRaw } from './types';
 
+import type { AppRouteRecordRaw } from './types';
 import publicRouter from './publicRouter';
 import { LoginRouter, ErrorRouter } from './base';
+
 import NProgress from '@/utils/nprogress';
 import { getToken } from '@/utils/token';
+
 import perimssionRouter from '@/stores/modules/Permission';
 
 // 基础路径

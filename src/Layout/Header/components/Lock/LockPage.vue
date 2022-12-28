@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="lock_page_footer">
-      <span>{{ date }} {{ w }}</span>
+      <span>{{ nowDate('YYYY-MM-DD') }} {{ weekDay() }}</span>
     </div>
   </div>
 
@@ -52,13 +52,14 @@
 <script setup lang="ts" name="LockPage">
 import type { FormInstance } from 'element-plus';
 
-import dayjs from 'dayjs';
 import { Lock } from '@element-plus/icons-vue';
 import LockStore from '@/stores/modules/Lock';
 import avatar from '@/assets/img/avatar.jpg';
 
+import { nowDate, weekDay } from '@/utils/timeConfiguration';
+
 // router
-const router = useRouter();
+// const router = useRouter();
 
 // pinia
 const lock = LockStore();
@@ -66,9 +67,6 @@ const lock = LockStore();
 let Houers = ref<string | number | undefined>();
 let minutes = ref<string | number | undefined>();
 let timer: NodeJS.Timer | null = null;
-
-const date = dayjs().format('YYYY-MM-DD');
-const w = ref<string | undefined>();
 
 const getTimer: Function = () => {
   const timer: Date = new Date();
@@ -100,31 +98,6 @@ onMounted(() => {
   timer = setInterval(() => {
     getTimer();
   }, 1000);
-
-  const now: dayjs.Dayjs = dayjs();
-  switch (now.$W) {
-    case 0:
-      w.value = '星期天';
-      break;
-    case 1:
-      w.value = '星期一';
-      break;
-    case 2:
-      w.value = '星期二';
-      break;
-    case 3:
-      w.value = '星期三';
-      break;
-    case 4:
-      w.value = '星期四';
-      break;
-    case 5:
-      w.value = '星期五';
-      break;
-    case 6:
-      w.value = '星期六';
-      break;
-  }
 });
 
 onBeforeUnmount(() => {

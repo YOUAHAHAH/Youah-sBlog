@@ -1,6 +1,5 @@
 import LoadingComponent from '@/components/Loading.vue';
 import Error from '@/views/Error/Error.vue';
-
 import type { Component } from '@/router/types';
 
 export const timer = (t: number | undefined, callback = () => {}) => {

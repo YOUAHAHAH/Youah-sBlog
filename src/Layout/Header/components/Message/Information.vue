@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul class="list">
+    <ul class="list" v-loading="loading" element-loading-text="加载中···">
       <li
         class="list_li"
         v-for="item in data.messageList.slice(
@@ -38,6 +38,8 @@ import messageData from '../../data/message.json';
 
 import Pagination from '@/components/Pagination.vue';
 
+let loading = ref<boolean>(true);
+
 const paginationData = reactive({
   total: messageData.messageData.elTabPaneTwo.data.length,
   background: true,
@@ -62,6 +64,9 @@ const handleCurrentChange = (val: number) => {
 
 onBeforeMount(() => {
   data.messageList = messageData.messageData.elTabPaneTwo.data;
+  setTimeout(() => {
+    loading.value = false;
+  }, 500);
 });
 </script>
 

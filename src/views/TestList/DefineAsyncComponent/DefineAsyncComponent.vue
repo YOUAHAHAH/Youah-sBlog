@@ -1,25 +1,37 @@
 <template>
   <div>
-    <div>
-      <el-image :src="avatar" fit="cover" class="img" />
-    </div>
-    <TestAsync />
+    <el-alert
+      title="异步组件测试"
+      type="success"
+      effect="dark"
+      style="margin-bottom: 10px"
+    />
+    <TestAsync v-if="renderComponent" />
+    <el-button @click.once="testAsync" style="margin-top: 10px" v-if="showBtn">
+      测试
+    </el-button>
   </div>
 </template>
 
 <script setup lang="ts">
-import avatar from '../../../../public/img/aaa.jpg';
-
 import TestAsyncVue from './components/TestAsync.vue';
 import { AsyncComponent } from '@/hooks/AsyncComponent';
+import type { Component } from '@/router/types';
 
-const TestAsync = AsyncComponent(TestAsyncVue as unknown as any, 2000);
+const TestAsync = markRaw(AsyncComponent(TestAsyncVue as Component, 2000));
+
+let renderComponent = ref<boolean>(false);
+let showBtn = ref<boolean>(true);
+
+const testAsync = async () => {
+  renderComponent.value = false;
+  await nextTick(() => {
+    renderComponent.value = true;
+    setTimeout(() => {
+      showBtn.value = false;
+    }, 2000);
+  });
+};
 </script>
 
-<style scoped lang="less">
-.img {
-  width: 100%;
-  height: 300px;
-  border-radius: 8px;
-}
-</style>
+<style scoped lang="less"></style>
