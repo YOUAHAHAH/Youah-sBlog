@@ -1,14 +1,18 @@
 <template>
-  <el-button
-    link
-    :icon="collapse.collapse ? Expand : Fold"
-    @click="changeCollapse()"
-    style="font-size: 20px"
-  ></el-button>
+  <a-button type="link" @click="changeCollapse()">
+    <template #icon>
+      <span v-show="collapse.collapse">
+        <menu-unfold-outlined style="color: #000000" />
+      </span>
+      <span v-show="!collapse.collapse">
+        <menu-fold-outlined style="color: #000000" />
+      </span>
+    </template>
+  </a-button>
 </template>
 
 <script setup lang="ts" name="IsCollapse">
-import { Fold, Expand } from '@element-plus/icons-vue';
+import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue';
 import IsCollapseStore from '@/stores/modules/isCollapse';
 
 const collapse = IsCollapseStore();

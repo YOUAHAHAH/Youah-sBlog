@@ -9,11 +9,12 @@
         )"
         :key="item.id"
       >
-        <el-avatar :src="item.picUrl" shape="square" />
+        <a-avatar :src="item.picUrl" shape="square" size="large" />
         <div class="list_li_content">
-          <el-tooltip :content="item.title" placement="top">
+          <a-tooltip placement="top" color="#2db7f5" arrow-point-at-center>
+            <template #title>{{ item.title }}</template>
             <div>{{ item.title }}</div>
-          </el-tooltip>
+          </a-tooltip>
           <div>{{ item.time }}</div>
         </div>
       </li>
@@ -35,7 +36,6 @@
 
 <script setup lang="ts">
 import messageData from '../../data/message.json';
-
 import Pagination from '@/components/Pagination.vue';
 
 let loading = ref<boolean>(true);
@@ -77,7 +77,7 @@ onBeforeMount(() => {
   display: flex;
   justify-content: center;
 }
-.el-avatar {
+.ant-avatar {
   background-color: transparent !important;
   margin-right: 16px;
 }

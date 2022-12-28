@@ -8,7 +8,8 @@ import '@/assets/style/base.css';
 import '@/assets/style/ep.less';
 import '@/assets/style/adaptation.less';
 
-import 'element-plus/dist/index.css';
+// import 'element-plus/dist/index.css';
+import 'ant-design-vue/dist/antd.css';
 
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 
@@ -21,7 +22,6 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 
 // 动画
 app.component(ElCollapseTransition.name, ElCollapseTransition);
-
 app.use(router);
 app.use(stores);
 app.mount('#app');

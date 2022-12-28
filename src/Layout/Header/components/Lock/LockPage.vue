@@ -1,7 +1,9 @@
 <template>
   <div class="lock_page">
     <div class="lock_page_unlock" @click="isShowBlur = true">
-      <el-link :underline="false" :icon="Lock" class="el_link_unlock"></el-link>
+      <a-button type="link" class="el_link_unlock">
+        <template #icon><lock-outlined /></template>
+      </a-button>
       <span>点击解锁</span>
     </div>
     <div class="lock_page_time">
@@ -20,42 +22,35 @@
   <div class="blur_page" v-show="isShowBlur">
     <div class="blur_page_enter">
       <img :src="avatar" />
-      <el-form :model="form" ref="formRef">
-        <el-form-item
-          prop="password"
+      <a-form :model="form" ref="formRef">
+        <a-form-item
+          name="password"
           :rules="[
             { required: true, message: '请输入锁屏密码', trigger: 'blur' },
           ]"
-          :show-message="true"
-          :inline-message="true"
         >
-          <el-input
-            v-model="form.password"
+          <a-input-password
+            v-model:value="form.password"
             autocomplete="off"
-            type="password"
-            show-password
+            allow-clear
             placeholder="请输入锁屏密码"
           />
-        </el-form-item>
-      </el-form>
+        </a-form-item>
+      </a-form>
       <div class="blur_page_link">
-        <el-button type="primary" link @click="isShowBlur = false">
-          返回
-        </el-button>
-        <el-button type="primary" link @click="backToLogin">返回登录</el-button>
-        <el-button type="primary" link @click="enter(formRef)">进入</el-button>
+        <a-button type="link" @click="isShowBlur = false">返回</a-button>
+        <a-button type="link" @click="backToLogin">返回登录</a-button>
+        <a-button type="link" @click="enter">进入</a-button>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts" name="LockPage">
-import type { FormInstance } from 'element-plus';
-
-import { Lock } from '@element-plus/icons-vue';
+import type { FormInstance } from 'ant-design-vue';
+import { LockOutlined } from '@ant-design/icons-vue';
 import LockStore from '@/stores/modules/Lock';
 import avatar from '@/assets/img/avatar.jpg';
-
 import { nowDate, weekDay } from '@/utils/timeConfiguration';
 
 // router
@@ -81,15 +76,15 @@ const formRef = ref<FormInstance>();
 const form = reactive({
   password: '' as string,
 });
+
 const backToLogin = () => {
   // router.push({ path: '/' });
 };
-const enter = async (formEl: FormInstance | undefined) => {
-  if (!formEl) return;
-  await formEl.validate((valid) => {
-    if (valid) {
-      lock.leaveLockPage(false, form.password);
-    }
+
+const enter = () => {
+  formRef.value?.validate().then(() => {
+    lock.leaveLockPage(false, form.password);
+    formRef.value?.resetFields();
   });
 };
 

@@ -6,9 +6,9 @@ import AutoImport from 'unplugin-auto-import/vite';
 import Components from 'unplugin-vue-components/vite';
 import VueSetupExtend from 'vite-plugin-vue-setup-extend';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
+import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 
 export default (env: ConfigEnv) => {
-
   const vitePlugins: (Plugin | Plugin[])[] = [
     vue({
       include: [/.vue$/],
@@ -28,6 +28,7 @@ export default (env: ConfigEnv) => {
       resolvers: [
         // 自动导入 Element Plus 组件
         ElementPlusResolver(),
+        AntDesignVueResolver(),
       ],
       dts: './src/components.d.ts',
     }),
